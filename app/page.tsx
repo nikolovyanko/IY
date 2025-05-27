@@ -1,24 +1,9 @@
 "use client"
 
-import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { ChevronDown, Compass, Ship, Globe, Star } from "lucide-react"
 
-const watchData = {
-  explorer: {
-    name: "Explorer Edition",
-    description: "Inspired by Magellan's courage to venture into the unknown",
-    image: "/placeholder.svg?height=400&width=400",
-    color: "from-amber-900 to-orange-800",
-  },
-  navigator: {
-    name: "Navigator Edition",
-    description: "Precision crafted for those who chart new courses",
-    image: "/placeholder.svg?height=400&width=400",
-    color: "from-blue-900 to-indigo-800",
-  },
-}
 
 const storySections = [
   {
@@ -82,13 +67,9 @@ const storySections = [
 ]
 
 export default function MagellanWatches() {
-  const searchParams = useSearchParams()
-  const watchType = searchParams.get("watch") || "explorer"
   const [scrollY, setScrollY] = useState(0)
   const [visibleSections, setVisibleSections] = useState<number[]>([])
 
-  const currentWatch = watchData[watchType as keyof typeof watchData] || watchData.explorer
-  const otherWatch = watchType === "explorer" ? watchData.navigator : watchData.explorer
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
@@ -130,7 +111,7 @@ export default function MagellanWatches() {
         <div className="relative z-10 container mx-auto px-4">
           <div className="text-center mb-16">
             <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-              IY - Magellan's Story
+              IY - История на Фернандо Магелан
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8">Часовник за съвременния изследовател.
             </p>
